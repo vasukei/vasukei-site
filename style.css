@@ -1,0 +1,440 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #070707;
+  --surface: #0d0d0d;
+  --surface-2: #111;
+  --text: #f2f2f0;
+  --muted: #8b8b87;
+  --line: #292929;
+  --accent: #8e1515;
+  --accent-bright: #b32626;
+  --max: 1220px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, Arial, sans-serif;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--text); color: var(--bg); }
+
+.noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: .055;
+  background-image:
+    radial-gradient(circle at 20% 30%, #fff 0 0.6px, transparent 0.8px),
+    radial-gradient(circle at 70% 80%, #fff 0 0.5px, transparent 0.8px);
+  background-size: 17px 17px, 23px 23px;
+  mix-blend-mode: screen;
+}
+
+.nav {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 76px;
+  padding: 0 4vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  background: rgba(7,7,7,.88);
+  backdrop-filter: blur(14px);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 700;
+  letter-spacing: .16em;
+  font-size: 18px;
+}
+.brand-mark { width: 32px; height: 32px; object-fit: contain; }
+.nav nav { display: flex; gap: 32px; }
+.nav nav a, .nav-join {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 13px;
+  letter-spacing: .18em;
+  color: #aaa;
+  transition: color .2s ease;
+}
+.nav nav a:hover, .nav-join:hover { color: #fff; }
+.nav-join {
+  border: 1px solid #444;
+  padding: 9px 15px;
+  color: #fff;
+}
+.nav-join:hover { border-color: #aaa; }
+
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: var(--max);
+  margin: auto;
+  padding: 120px 5vw 70px;
+  overflow: hidden;
+}
+.hero-rule {
+  position: absolute;
+  top: 76px;
+  bottom: 0;
+  left: 5vw;
+  width: 1px;
+  background: linear-gradient(transparent, #333, transparent);
+}
+.hero-copy { position: relative; z-index: 2; width: 60%; }
+.eyebrow, .section-label {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 12px;
+  letter-spacing: .28em;
+  color: #777;
+}
+.eyebrow::before, .section-label::before {
+  content: "— ";
+  color: var(--accent-bright);
+}
+.hero h1 {
+  margin: 15px 0 0;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(90px, 17vw, 220px);
+  line-height: .72;
+  letter-spacing: -.035em;
+  font-weight: 800;
+}
+.tagline {
+  margin: 38px 0 0;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(20px, 3vw, 35px);
+  letter-spacing: .3em;
+  color: #d6d6d3;
+}
+.intro {
+  max-width: 520px;
+  margin: 22px 0 0;
+  line-height: 1.75;
+  color: var(--muted);
+  font-size: 14px;
+}
+.hero-actions { display: flex; gap: 13px; margin-top: 34px; flex-wrap: wrap; }
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 26px;
+  padding: 14px 18px;
+  border: 1px solid #444;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 600;
+  letter-spacing: .16em;
+  font-size: 12px;
+  transition: .25s ease;
+}
+.button-primary { background: #efefed; color: #090909; border-color: #efefed; }
+.button-primary:hover { background: #fff; transform: translateY(-2px); }
+.button-quiet { color: #aaa; }
+.button-quiet:hover { color: #fff; border-color: #777; }
+.hero-emblem {
+  position: absolute;
+  width: min(45vw, 500px);
+  aspect-ratio: 1;
+  right: -3vw;
+  top: 52%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  opacity: .85;
+}
+.hero-emblem img {
+  width: 68%;
+  position: relative;
+  z-index: 2;
+  filter: contrast(1.05);
+}
+.emblem-ring {
+  position: absolute;
+  width: 92%;
+  aspect-ratio: 1;
+  border: 1px solid #272727;
+  border-radius: 50%;
+}
+.emblem-ring::after {
+  content: "";
+  position: absolute;
+  inset: 7%;
+  border: 1px solid #191919;
+  border-radius: 50%;
+}
+.emblem-label {
+  position: absolute;
+  bottom: 8%;
+  right: 12%;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 14px;
+  letter-spacing: .25em;
+  color: #555;
+}
+.hero-meta {
+  position: absolute;
+  left: 5vw;
+  right: 5vw;
+  bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  font: 10px "Barlow Condensed", sans-serif;
+  letter-spacing: .2em;
+  color: #555;
+}
+
+.section {
+  max-width: var(--max);
+  margin: auto;
+  padding: 130px 5vw;
+  border-top: 1px solid #181818;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.section.visible { opacity: 1; transform: none; }
+
+.about-grid, .contact-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 8vw;
+  margin-top: 65px;
+}
+.display, .network-head h2, .project-heading h2, .contact-grid h2 {
+  margin: 0;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 700;
+  font-size: clamp(58px, 8vw, 108px);
+  line-height: .86;
+  letter-spacing: -.025em;
+}
+.display em, h2 span { font-style: normal; color: #777; }
+.body-copy { max-width: 500px; padding-top: 8px; }
+.body-copy p { line-height: 1.9; color: #aaa; font-size: 14px; }
+.mini-rule { width: 50px; height: 1px; background: var(--accent-bright); margin: 35px 0 18px; }
+.small-note { font-family: "Barlow Condensed", sans-serif; letter-spacing: .22em; font-size: 11px !important; color: #eee !important; }
+
+.network { background: linear-gradient(90deg, #070707, #0a0a0a); }
+.network-head, .project-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-top: 60px; }
+.network-head p, .project-heading p { color: #666; font-size: 12px; letter-spacing: .08em; max-width: 220px; line-height: 1.6; }
+.cards {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  grid-template-rows: 210px 210px;
+  gap: 1px;
+  background: #242424;
+  margin-top: 60px;
+  border: 1px solid #242424;
+}
+.card {
+  position: relative;
+  background: #0a0a0a;
+  padding: 27px;
+  display: flex;
+  flex-direction: column;
+  transition: .3s ease;
+  opacity: 0;
+  transform: translateY(14px);
+}
+.card.visible { opacity: 1; transform: none; }
+.card:hover { background: #111; }
+.card-feature { grid-row: span 2; background: #0e0e0e; }
+.card-index { color: #555; font: 11px "Barlow Condensed", sans-serif; letter-spacing: .18em; }
+.card-icon {
+  margin-top: auto;
+  font: 600 30px "Barlow Condensed", sans-serif;
+  color: #bbb;
+}
+.card-feature .card-icon { font-size: 70px; color: #eee; }
+.card-title { margin-top: 8px; font: 700 26px "Barlow Condensed", sans-serif; letter-spacing: .08em; }
+.card-desc { margin-top: 8px; color: #777; font-size: 11px; line-height: 1.6; max-width: 280px; }
+.card-arrow { position: absolute; right: 24px; bottom: 24px; color: #777; }
+.card-feature .card-arrow { color: var(--accent-bright); }
+
+.project-list { margin-top: 60px; border-top: 1px solid #292929; }
+.project {
+  display: grid;
+  grid-template-columns: 90px 1fr 120px;
+  gap: 30px;
+  padding: 30px 0;
+  border-bottom: 1px solid #292929;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: .6s ease;
+}
+.project.visible { opacity: 1; transform: none; }
+.project-no { color: #555; font: 13px "Barlow Condensed", sans-serif; letter-spacing: .12em; }
+.project-main h3 { margin: 0; font: 600 28px "Barlow Condensed", sans-serif; letter-spacing: .07em; }
+.project-main p { color: #777; font-size: 12px; line-height: 1.6; margin: 8px 0 0; max-width: 650px; }
+.project-status { color: var(--accent-bright); font: 10px "Barlow Condensed", sans-serif; letter-spacing: .2em; text-align: right; }
+
+.manifesto {
+  padding: 160px 5vw;
+  text-align: center;
+  border-top: 1px solid #181818;
+  border-bottom: 1px solid #181818;
+  background:
+    radial-gradient(circle at center, #171717 0, #090909 45%, #070707 75%);
+}
+.manifesto-mark {
+  width: 72px; height: 72px;
+  margin: 0 auto 35px;
+  border: 1px solid #333;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font: 700 32px "Barlow Condensed", sans-serif;
+  color: #ddd;
+}
+.manifesto h2 {
+  margin: 0 auto 38px;
+  font: 700 clamp(55px, 9vw, 120px)/.83 "Barlow Condensed", sans-serif;
+  letter-spacing: -.03em;
+}
+.manifesto h2 em { color: #777; font-style: normal; }
+
+.contact { padding-bottom: 100px; }
+.contact-links { display: flex; flex-direction: column; border-top: 1px solid #292929; }
+.contact-links a {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid #292929;
+  font: 600 18px "Barlow Condensed", sans-serif;
+  letter-spacing: .12em;
+  color: #aaa;
+  transition: .2s;
+}
+.contact-links a:hover { color: #fff; padding-left: 8px; }
+.contact-links span { color: var(--accent-bright); }
+
+footer {
+  max-width: var(--max);
+  margin: auto;
+  padding: 30px 5vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  color: #4e4e4e;
+  font: 10px "Barlow Condensed", sans-serif;
+  letter-spacing: .18em;
+}
+.footer-brand { color: #aaa; font-size: 16px; font-weight: 700; }
+.footer-center { text-align: center; }
+.footer-right { text-align: right; }
+
+@media (max-width: 800px) {
+  .nav { height: 65px; padding: 0 20px; }
+  .nav nav { display: none; }
+  .nav-join { padding: 8px 12px; }
+  .hero { padding: 120px 24px 80px; min-height: 900px; align-items: flex-start; }
+  .hero-rule { left: 24px; top: 65px; }
+  .hero-copy { width: 100%; }
+  .hero h1 { font-size: 24vw; margin-top: 25px; }
+  .hero-emblem { width: 75vw; right: -22vw; top: 63%; opacity: .35; }
+  .hero-meta { left: 24px; right: 24px; bottom: 25px; font-size: 8px; }
+  .hero-meta span:nth-child(2) { display: none; }
+  .section { padding: 90px 24px; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 45px; margin-top: 45px; }
+  .network-head, .project-heading { display: block; margin-top: 45px; }
+  .network-head p, .project-heading p { margin-top: 20px; }
+  .cards { display: flex; flex-direction: column; }
+  .card, .card-feature { min-height: 190px; }
+  .project { grid-template-columns: 45px 1fr; gap: 12px; }
+  .project-status { grid-column: 2; text-align: left; }
+  .manifesto { padding: 110px 24px; }
+  footer { grid-template-columns: 1fr; gap: 12px; padding: 25px 24px; }
+  .footer-center, .footer-right { text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+}
+
+
+.archive { padding-top: 105px; }
+.archive-grid {
+  margin-top: 55px;
+  display: grid;
+  grid-template-columns: 1.35fr .65fr;
+  min-height: 530px;
+  border: 1px solid #242424;
+  background: #090909;
+}
+.archive-image {
+  position: relative;
+  min-height: 530px;
+  overflow: hidden;
+  background: #111;
+}
+.archive-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  filter: grayscale(1) contrast(1.2) brightness(.72);
+  opacity: .78;
+  transform: scale(1.03);
+}
+.archive-fade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 50%, #090909 100%),
+    linear-gradient(0deg, #090909 0%, transparent 22%, transparent 75%, rgba(0,0,0,.55) 100%);
+}
+.archive-stamp {
+  position: absolute;
+  left: 24px;
+  bottom: 22px;
+  padding: 7px 10px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.55);
+  font: 10px "Barlow Condensed", sans-serif;
+  letter-spacing: .22em;
+  color: #bbb;
+}
+.archive-copy {
+  padding: 55px 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.archive-copy h2 {
+  margin: 15px 0 30px;
+  font: 700 clamp(55px, 7vw, 92px)/.83 "Barlow Condensed", sans-serif;
+  letter-spacing: -.03em;
+}
+.archive-copy h2 span { color: #777; }
+.archive-copy > p:not(.eyebrow):not(.archive-note) {
+  color: #888;
+  font-size: 13px;
+  line-height: 1.85;
+  max-width: 330px;
+}
+.archive-note {
+  margin-top: auto;
+  color: #555;
+  font: 10px "Barlow Condensed", sans-serif;
+  letter-spacing: .2em;
+}
+@media (max-width: 800px) {
+  .archive-grid { grid-template-columns: 1fr; }
+  .archive-image { min-height: 430px; }
+  .archive-copy { min-height: 390px; padding: 45px 28px; }
+}
